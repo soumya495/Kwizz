@@ -4,8 +4,7 @@ import categoriesData from '../categories';
 import AppContext from '../AppContext';
 
 const Categories = ({navigation}) => {
-  const {baseUrl, setUrl} = useContext(AppContext);
-  const [category, setCategory] = useState(null);
+  const {baseUrl, setUrl, category, setCategory} = useContext(AppContext);
 
   function onCategoryPress(ctg) {
     if (category && category.id === ctg.id) {

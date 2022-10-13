@@ -7,6 +7,9 @@ export function AppProvider({children}) {
     'https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986';
 
   const [url, setUrl] = useState('');
+  const [category, setCategory] = useState(null);
+  const [difficulty, setDifficulty] = useState(null);
+  const [result, setResult] = useState(0);
 
   return (
     <AppContext.Provider
@@ -14,6 +17,12 @@ export function AppProvider({children}) {
         baseUrl,
         url,
         setUrl,
+        category,
+        setCategory,
+        difficulty,
+        setDifficulty,
+        result,
+        setResult,
       }}>
       {children}
     </AppContext.Provider>

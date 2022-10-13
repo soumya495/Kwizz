@@ -6,6 +6,7 @@ import Home from './screens/Home';
 import Categories from './screens/Categories';
 import Difficulty from './screens/Difficulty';
 import Quiz from './screens/Quiz';
+import Results from './screens/Results';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {AppProvider} from './AppContext';
 
@@ -30,6 +31,7 @@ const App = () => {
             <Stack.Screen name="Categories" component={Categories} />
             <Stack.Screen name="Difficulty" component={Difficulty} />
             <Stack.Screen name="Quiz" component={Quiz} />
+            <Stack.Screen name="Results" component={Results} />
           </Stack.Navigator>
         </SafeAreaProvider>
       </NavigationContainer>

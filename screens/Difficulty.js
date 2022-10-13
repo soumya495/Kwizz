@@ -3,8 +3,7 @@ import React, {useContext, useState} from 'react';
 import AppContext from '../AppContext';
 
 const Difficulty = ({navigation}) => {
-  const {baseUrl, url, setUrl} = useContext(AppContext);
-  const [difficulty, setDifficulty] = useState(null);
+  const {url, setUrl, difficulty, setDifficulty} = useContext(AppContext);
 
   function handleDifficulty(diff) {
     setDifficulty(diff);
@@ -24,8 +23,6 @@ const Difficulty = ({navigation}) => {
 
     setUrl(prev => `${prev}&difficulty=${diff}`);
   }
-
-  console.log('Main Url: ', url);
 
   return (
     <SafeAreaView className="flex-1 relative bg-[#fff]">
