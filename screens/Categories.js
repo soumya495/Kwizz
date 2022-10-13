@@ -18,10 +18,8 @@ const Categories = ({navigation}) => {
     setUrl(`${baseUrl}&category=${ctg.id}`);
   }
 
-  console.log(category);
-
   return (
-    <SafeAreaView className="flex relative">
+    <SafeAreaView className="flex-1 relative">
       <View className="bg-blue min-h-[300px]">
         <View className="pt-6">
           <Text className="text-light font-[Rubik-SemiBold] text-2xl text-center">
@@ -29,7 +27,10 @@ const Categories = ({navigation}) => {
           </Text>
         </View>
         <View className="max-w-[200px] mx-auto flex-1 justify-center">
-          <Text className="font-[Rubik-Italic] text-center text-xl text-light mb-12">
+          <Text
+            className={`font-[Rubik-Italic] text-center text-xl text-light ${
+              category ? 'mb-24' : 'mb-12'
+            }`}>
             Choose a category to start quiz
           </Text>
         </View>
@@ -59,10 +60,10 @@ const Categories = ({navigation}) => {
         })}
       </View>
       {category && (
-        <View className="w-full absolute -bottom-14 flex-row justify-center">
+        <View className="w-full absolute bottom-6 flex-row justify-center">
           <TouchableOpacity
             className="bg-yellow w-[220px] mx-auto p-3 rounded-lg"
-            onPress={() => navigation.navigate('Categories')}>
+            onPress={() => navigation.navigate('Difficulty')}>
             <Text className="font-[Rubik-Regular] text-xl text-center text-dark ">
               Next
             </Text>
