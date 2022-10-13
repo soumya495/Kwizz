@@ -1,10 +1,11 @@
 import {SafeAreaView, View, Text, TouchableOpacity, Image} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import categoriesData from '../categories';
 import AppContext from '../AppContext';
 
 const Categories = ({navigation}) => {
-  const {baseUrl, setUrl, category, setCategory} = useContext(AppContext);
+  const {baseUrl, setUrl, category, setCategory, setResult, setDifficulty} =
+    useContext(AppContext);
 
   function onCategoryPress(ctg) {
     if (category && category.id === ctg.id) {

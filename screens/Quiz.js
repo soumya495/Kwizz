@@ -1,4 +1,12 @@
-import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+  Alert,
+} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import AppContext from '../AppContext';
@@ -57,6 +65,32 @@ const Quiz = ({navigation}) => {
     setQuestions(null);
     setCurrQues(0);
     fetchQuestions();
+
+    // when user presses back in middle of quiz
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to End the quiz?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'YES',
+          onPress: () => {
+            setResult(0);
+            navigation.navigate('Results');
+          },
+        },
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   // checks the correct answer
