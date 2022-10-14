@@ -9,7 +9,11 @@ export function AppProvider({children}) {
   const [url, setUrl] = useState('');
   const [category, setCategory] = useState(null);
   const [difficulty, setDifficulty] = useState(null);
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState({
+    correct: 0,
+    incorrect: 0,
+    skipped: 0,
+  });
 
   return (
     <AppContext.Provider

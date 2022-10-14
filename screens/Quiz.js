@@ -56,7 +56,11 @@ const Quiz = ({navigation}) => {
   }
 
   useEffect(() => {
-    setResult(0);
+    setResult({
+      correct: 0,
+      incorrect: 0,
+      skipped: 0,
+    });
     setAnswerLoaded({
       loaded: false,
       selectedAns: null,
@@ -77,7 +81,11 @@ const Quiz = ({navigation}) => {
         {
           text: 'YES',
           onPress: () => {
-            setResult(0);
+            setResult({
+              correct: 0,
+              incorrect: 0,
+              skipped: 0,
+            });
             navigation.navigate('Results');
           },
         },
@@ -100,9 +108,18 @@ const Quiz = ({navigation}) => {
       selectedAns: opt,
       correctAns: questions[currQues].correct_answer,
     });
+
     // result is incremented when ans is correct
     if (opt === questions[currQues].correct_answer) {
-      setResult(prev => prev + 1);
+      setResult(prev => ({
+        ...prev,
+        correct: prev.correct + 1,
+      }));
+    } else {
+      setResult(prev => ({
+        ...prev,
+        incorrect: prev.incorrect + 1,
+      }));
     }
   }
 
@@ -110,6 +127,15 @@ const Quiz = ({navigation}) => {
   function nextQuestion() {
     console.log(currQues, questions.length - 1);
     console.log('hello - 1');
+
+    // handle skip situation
+    if (!answerLoaded.loaded) {
+      setResult(prev => ({
+        ...prev,
+        skipped: prev.skipped + 1,
+      }));
+    }
+
     if (currQues < questions.length - 1) {
       setCurrQues(prev => prev + 1);
       setAnswerLoaded({
